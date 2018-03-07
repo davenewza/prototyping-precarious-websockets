@@ -1,0 +1,1 @@
+Prototyping websockets in networks with unreliability connectivity and low bandwith.
