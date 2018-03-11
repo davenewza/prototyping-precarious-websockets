@@ -12545,11 +12545,11 @@
       "hideWarningsAndErrors": true
     },
     "restore": {
-      "projectUniqueName": "C:\\GitHub\\prototyping-precarious-websockets\\PrototypingPrecariousWebSockets\\PrototypingPrecariousWebSockets\\PrototypingPrecariousWebSockets.csproj",
-      "projectName": "PrototypingPrecariousWebSockets",
-      "projectPath": "C:\\GitHub\\prototyping-precarious-websockets\\PrototypingPrecariousWebSockets\\PrototypingPrecariousWebSockets\\PrototypingPrecariousWebSockets.csproj",
+      "projectUniqueName": "C:\\GitHub\\prototyping-precarious-websockets\\PrototypingPrecariousWebSockets\\PrototypingPrecariousWebSockets.Server\\PrototypingPrecariousWebSockets.Server.csproj",
+      "projectName": "PrototypingPrecariousWebSockets.Server",
+      "projectPath": "C:\\GitHub\\prototyping-precarious-websockets\\PrototypingPrecariousWebSockets\\PrototypingPrecariousWebSockets.Server\\PrototypingPrecariousWebSockets.Server.csproj",
       "packagesPath": "C:\\Users\\Dave\\.nuget\\packages\\",
-      "outputPath": "C:\\GitHub\\prototyping-precarious-websockets\\PrototypingPrecariousWebSockets\\PrototypingPrecariousWebSockets\\obj\\",
+      "outputPath": "C:\\GitHub\\prototyping-precarious-websockets\\PrototypingPrecariousWebSockets\\PrototypingPrecariousWebSockets.Server\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
