@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 
 namespace PrototypingPrecariousWebSockets.Server
 {
-    public class Chat : Hub
+    public class Serv : Hub
     {
         public Task Send(string message)
         {
@@ -14,10 +14,7 @@ namespace PrototypingPrecariousWebSockets.Server
         public async Task Receive(string message)
         {
             Console.WriteLine("Received: " + message);
-
             await Send("response");
-
-            //return Task.CompletedTask;
         }
     }
 }

@@ -12,7 +12,7 @@ namespace Test
             Console.WriteLine("Socket Client!");
 
             var connection = new HubConnectionBuilder()
-                .WithUrl("http://localhost:5000/chat")
+                .WithUrl("http://localhost:5000/serv")
                 .WithConsoleLogger()
                 .Build();
 

@@ -5,8 +5,6 @@ VisualStudioVersion = 15.0.27130.2026
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PrototypingPrecariousWebSockets.Server", "PrototypingPrecariousWebSockets.Server\PrototypingPrecariousWebSockets.Server.csproj", "{CDAB56F2-1804-4723-A015-585226F1BB81}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PrototypingPrecariousWebSockets.Console", "PrototypingPrecariousWebSockets.Console\PrototypingPrecariousWebSockets.Console.csproj", "{B653B3F1-DDD0-4071-A3F7-5EB007A6C656}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test", "Test\Test.csproj", "{C4445A62-1138-464F-8E32-33D8BE92CD78}"
 EndProject
 Global
@@ -19,10 +17,6 @@ Global
 		{CDAB56F2-1804-4723-A015-585226F1BB81}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CDAB56F2-1804-4723-A015-585226F1BB81}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CDAB56F2-1804-4723-A015-585226F1BB81}.Release|Any CPU.Build.0 = Release|Any CPU
-		{B653B3F1-DDD0-4071-A3F7-5EB007A6C656}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B653B3F1-DDD0-4071-A3F7-5EB007A6C656}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B653B3F1-DDD0-4071-A3F7-5EB007A6C656}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B653B3F1-DDD0-4071-A3F7-5EB007A6C656}.Release|Any CPU.Build.0 = Release|Any CPU
 		{C4445A62-1138-464F-8E32-33D8BE92CD78}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{C4445A62-1138-464F-8E32-33D8BE92CD78}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C4445A62-1138-464F-8E32-33D8BE92CD78}.Release|Any CPU.ActiveCfg = Release|Any CPU

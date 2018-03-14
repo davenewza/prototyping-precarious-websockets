@@ -3,10 +3,6 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using PrototypingPrecariousWebSockets.Server;
-using System;
-using System.Net.WebSockets;
-using System.Threading;
-using System.Threading.Tasks;
 
 namespace PrototypingPrecariousWebSockets
 {
@@ -15,23 +11,17 @@ namespace PrototypingPrecariousWebSockets
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddSignalR();
+            services.AddMvcCore();
         }
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
             app.UseSignalR(routes =>
             {
-                routes.MapHub<Chat>("/chat");
+                routes.MapHub<Serv>("/serv");
             });
 
-            app.Run(async context =>
-            {
-                var chat = new Chat();
-
-                await context.Response.WriteAsync("Sending message to client...");
-
-                await chat.Send("from HTTP");
-            });
+            app.UseMvc();
         }
     }
 }
