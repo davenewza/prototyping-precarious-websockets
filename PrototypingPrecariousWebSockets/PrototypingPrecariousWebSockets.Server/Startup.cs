@@ -21,7 +21,16 @@ namespace PrototypingPrecariousWebSockets
         {
             app.UseSignalR(routes =>
             {
-                routes.MapHub<Chat>("chat");
+                routes.MapHub<Chat>("/chat");
+            });
+
+            app.Run(async context =>
+            {
+                var chat = new Chat();
+
+                await context.Response.WriteAsync("Sending message to client...");
+
+                await chat.Send("from HTTP");
             });
         }
     }

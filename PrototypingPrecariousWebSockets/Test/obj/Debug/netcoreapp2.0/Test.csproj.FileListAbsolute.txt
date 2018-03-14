@@ -1,0 +1,11 @@
+C:\GitHub\prototyping-precarious-websockets\PrototypingPrecariousWebSockets\Test\bin\Debug\netcoreapp2.0\Test.deps.json
+C:\GitHub\prototyping-precarious-websockets\PrototypingPrecariousWebSockets\Test\bin\Debug\netcoreapp2.0\Test.runtimeconfig.json
+C:\GitHub\prototyping-precarious-websockets\PrototypingPrecariousWebSockets\Test\bin\Debug\netcoreapp2.0\Test.runtimeconfig.dev.json
+C:\GitHub\prototyping-precarious-websockets\PrototypingPrecariousWebSockets\Test\bin\Debug\netcoreapp2.0\Test.dll
+C:\GitHub\prototyping-precarious-websockets\PrototypingPrecariousWebSockets\Test\bin\Debug\netcoreapp2.0\Test.pdb
+C:\GitHub\prototyping-precarious-websockets\PrototypingPrecariousWebSockets\Test\obj\Debug\netcoreapp2.0\Test.csproj.CoreCompileInputs.cache
+C:\GitHub\prototyping-precarious-websockets\PrototypingPrecariousWebSockets\Test\obj\Debug\netcoreapp2.0\Test.AssemblyInfoInputs.cache
+C:\GitHub\prototyping-precarious-websockets\PrototypingPrecariousWebSockets\Test\obj\Debug\netcoreapp2.0\Test.AssemblyInfo.cs
+C:\GitHub\prototyping-precarious-websockets\PrototypingPrecariousWebSockets\Test\obj\Debug\netcoreapp2.0\Test.dll
+C:\GitHub\prototyping-precarious-websockets\PrototypingPrecariousWebSockets\Test\obj\Debug\netcoreapp2.0\Test.pdb
+C:\GitHub\prototyping-precarious-websockets\PrototypingPrecariousWebSockets\Test\obj\Debug\netcoreapp2.0\Test.csprojResolveAssemblyReference.cache
