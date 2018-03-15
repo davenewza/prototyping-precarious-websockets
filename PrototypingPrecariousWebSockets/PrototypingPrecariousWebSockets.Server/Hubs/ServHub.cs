@@ -2,9 +2,9 @@
 using System;
 using System.Threading.Tasks;
 
-namespace PrototypingPrecariousWebSockets.Server
+namespace PrototypingPrecariousWebSockets.Server.Hubs
 {
-    public class Serv : Hub
+    public class ServHub : Hub
     {
         public Task Send(string message)
         {

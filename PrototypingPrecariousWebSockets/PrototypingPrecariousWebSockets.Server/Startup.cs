@@ -1,8 +1,7 @@
 ﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
-using PrototypingPrecariousWebSockets.Server;
+using PrototypingPrecariousWebSockets.Server.Hubs;
 
 namespace PrototypingPrecariousWebSockets
 {
@@ -18,7 +17,7 @@ namespace PrototypingPrecariousWebSockets
         {
             app.UseSignalR(routes =>
             {
-                routes.MapHub<Serv>("/serv");
+                routes.MapHub<ServHub>("/serv");
             });
 
             app.UseMvc();
