@@ -2,9 +2,6 @@
 using Microsoft.AspNetCore.SignalR;
 using PrototypingPrecariousWebSockets.Server.Hubs;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace PrototypingPrecariousWebSockets.Server.Controllers
 {
@@ -18,8 +15,14 @@ namespace PrototypingPrecariousWebSockets.Server.Controllers
             _hubContext = hubContext;
         }
 
+        [HttpGet()]
+        public string Get()
+        {
+            return String.Join(" | ", Messages.All);
+        }
+
         [HttpGet("send")]
-        public string Send(string msg)
+        public string Send()
         {
             _hubContext.Clients.All.SendAsync("Send", "FROM HTTP");
             return "sent";

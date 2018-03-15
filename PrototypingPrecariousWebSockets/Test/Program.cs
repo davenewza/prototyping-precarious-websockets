@@ -16,6 +16,17 @@ namespace Test
                 .WithConsoleLogger()
                 .Build();
 
+            var connection2 = new HubConnectionBuilder()
+                .WithUrl("http://localhost:5000/user")
+                .WithConsoleLogger()
+                .Build();
+
+            Task.Delay(2000).Wait();
+
+            connection2.StartAsync().Wait();
+            connection2.InvokeAsync("Accept", "my message");
+            connection2.InvokeAsync("Accept", "my message2");
+
             connection.On<string>("Send", data =>
             {
                 Console.WriteLine($"Received: {data}");

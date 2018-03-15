@@ -5,7 +5,7 @@ VisualStudioVersion = 15.0.27130.2026
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PrototypingPrecariousWebSockets.Server", "PrototypingPrecariousWebSockets.Server\PrototypingPrecariousWebSockets.Server.csproj", "{CDAB56F2-1804-4723-A015-585226F1BB81}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test", "Test\Test.csproj", "{C4445A62-1138-464F-8E32-33D8BE92CD78}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Test", "Test\Test.csproj", "{C4445A62-1138-464F-8E32-33D8BE92CD78}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
