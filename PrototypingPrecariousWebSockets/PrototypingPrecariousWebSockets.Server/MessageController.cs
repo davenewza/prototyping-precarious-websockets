@@ -20,7 +20,7 @@ namespace PrototypingPrecariousWebSockets.Server
         [HttpGet("send")]
         public string Send(string msg)
         {
-            _hubContext.Clients.Group("sdsd").SendAsync("Send", "FROM HTTP");
+            _hubContext.Clients.All.SendAsync("Send", "FROM HTTP");
             return "sent";
         }
     }
