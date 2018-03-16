@@ -13,24 +13,25 @@ namespace Test
 {
     internal class Program
     {
-        private static ArraySegment<byte> AsMessage(string message)
-        {
-            var encoded = Encoding.UTF8.GetBytes(message);
-            var bytes = new ArraySegment<byte>(encoded);
-            return bytes.Append((byte)0x1e).ToArray();
-        }
-
         private static void Main(string[] args)
         {
-            Console.WriteLine("Socket Client!");
-
             string url = "http://precariouswebsockets.azurewebsites.net/user"; //http://localhost:5000/user
+
+            var handler = new HttpClientHandler
+            {
+                ClientCertificateOptions = ClientCertificateOption.Manual,
+                ServerCertificateCustomValidationCallback = (httpRequestMessage, cert, cetChain, policyErrors) => true,
+                SslProtocols = SslProtocols.Tls12 | SslProtocols.Tls11 | SslProtocols.Tls
+            };
 
             var signalRConnection = new HubConnectionBuilder()
                 .WithUrl(url)
+                .WithTransport(TransportType.WebSockets)
+                .WithMessageHandler(handler)
                 .WithConsoleLogger()
                 .Build();
 
+            signalRConnection.On<string>("Accept", id => { });
             signalRConnection.StartAsync().Wait();
             signalRConnection.InvokeAsync("Accept", "SignalR Client: Test Message!");
 
@@ -54,36 +55,11 @@ namespace Test
             Console.ReadLine();
         }
 
-        public async static Task<bool> ConnectToSignalRService()
+        private static ArraySegment<byte> AsMessage(string message)
         {
-            try
-            {
-                Uri.TryCreate(new Uri("http://precariouswebsockets.azurewebsites.net"), "user", out Uri url);
-
-                var handler = new HttpClientHandler
-                {
-                    ClientCertificateOptions = ClientCertificateOption.Manual,
-                    ServerCertificateCustomValidationCallback = (httpRequestMessage, cert, cetChain, policyErrors) => true,
-                    SslProtocols = SslProtocols.Tls12 | SslProtocols.Tls11 | SslProtocols.Tls
-                };
-
-                var Connection = new HubConnectionBuilder()
-                    .WithUrl(url)
-                    .WithTransport(TransportType.WebSockets)
-                    .WithMessageHandler(handler)
-                    .WithConsoleLogger()
-                    .Build();
-
-                Connection.On<string>("GetSignalRConnectionUniqueId", uniqueId => { });
-
-                await Connection.StartAsync();
-                await Connection.InvokeAsync("Accept", "WEBSOOOKOOTS");
-            }
-            catch (Exception ex)
-            {
-                throw;
-            }
-            return true;
+            var encoded = Encoding.UTF8.GetBytes(message);
+            var bytes = new ArraySegment<byte>(encoded);
+            return bytes.Append((byte)0x1e).ToArray();
         }
     }
 }
