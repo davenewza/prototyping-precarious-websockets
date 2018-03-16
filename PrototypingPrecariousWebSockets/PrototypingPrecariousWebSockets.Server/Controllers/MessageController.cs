@@ -21,6 +21,12 @@ namespace PrototypingPrecariousWebSockets.Server.Controllers
             return String.Join(" | ", Messages.All);
         }
 
+        //[HttpGet("connections")]
+        //public string Get()
+        //{
+        //    return _hubContext.
+        //}
+
         [HttpGet("send")]
         public string Send()
         {

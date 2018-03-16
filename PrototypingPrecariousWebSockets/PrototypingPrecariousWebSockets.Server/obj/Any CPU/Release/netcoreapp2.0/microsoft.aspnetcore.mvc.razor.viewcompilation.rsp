@@ -1,0 +1,5 @@
+C:\GitHub\prototyping-precarious-websockets\PrototypingPrecariousWebSockets\PrototypingPrecariousWebSockets.Server
+--output-path=obj\Any CPU\Release\netcoreapp2.0\
+--application-name=PrototypingPrecariousWebSockets.Server
+--content-root=C:\GitHub\prototyping-precarious-websockets\PrototypingPrecariousWebSockets\PrototypingPrecariousWebSockets.Server
+--file=

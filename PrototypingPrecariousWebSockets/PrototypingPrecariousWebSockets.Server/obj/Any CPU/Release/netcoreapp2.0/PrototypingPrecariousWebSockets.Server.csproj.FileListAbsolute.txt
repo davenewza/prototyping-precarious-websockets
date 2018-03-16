@@ -1,0 +1,11 @@
+C:\GitHub\prototyping-precarious-websockets\PrototypingPrecariousWebSockets\PrototypingPrecariousWebSockets.Server\bin\Any CPU\Release\netcoreapp2.0\PrototypingPrecariousWebSockets.Server.deps.json
+C:\GitHub\prototyping-precarious-websockets\PrototypingPrecariousWebSockets\PrototypingPrecariousWebSockets.Server\bin\Any CPU\Release\netcoreapp2.0\PrototypingPrecariousWebSockets.Server.runtimeconfig.json
+C:\GitHub\prototyping-precarious-websockets\PrototypingPrecariousWebSockets\PrototypingPrecariousWebSockets.Server\bin\Any CPU\Release\netcoreapp2.0\PrototypingPrecariousWebSockets.Server.runtimeconfig.dev.json
+C:\GitHub\prototyping-precarious-websockets\PrototypingPrecariousWebSockets\PrototypingPrecariousWebSockets.Server\bin\Any CPU\Release\netcoreapp2.0\PrototypingPrecariousWebSockets.Server.dll
+C:\GitHub\prototyping-precarious-websockets\PrototypingPrecariousWebSockets\PrototypingPrecariousWebSockets.Server\bin\Any CPU\Release\netcoreapp2.0\PrototypingPrecariousWebSockets.Server.pdb
+C:\GitHub\prototyping-precarious-websockets\PrototypingPrecariousWebSockets\PrototypingPrecariousWebSockets.Server\obj\Any CPU\Release\netcoreapp2.0\PrototypingPrecariousWebSockets.Server.csprojResolveAssemblyReference.cache
+C:\GitHub\prototyping-precarious-websockets\PrototypingPrecariousWebSockets\PrototypingPrecariousWebSockets.Server\obj\Any CPU\Release\netcoreapp2.0\PrototypingPrecariousWebSockets.Server.csproj.CoreCompileInputs.cache
+C:\GitHub\prototyping-precarious-websockets\PrototypingPrecariousWebSockets\PrototypingPrecariousWebSockets.Server\obj\Any CPU\Release\netcoreapp2.0\PrototypingPrecariousWebSockets.Server.AssemblyInfoInputs.cache
+C:\GitHub\prototyping-precarious-websockets\PrototypingPrecariousWebSockets\PrototypingPrecariousWebSockets.Server\obj\Any CPU\Release\netcoreapp2.0\PrototypingPrecariousWebSockets.Server.AssemblyInfo.cs
+C:\GitHub\prototyping-precarious-websockets\PrototypingPrecariousWebSockets\PrototypingPrecariousWebSockets.Server\obj\Any CPU\Release\netcoreapp2.0\PrototypingPrecariousWebSockets.Server.dll
+C:\GitHub\prototyping-precarious-websockets\PrototypingPrecariousWebSockets\PrototypingPrecariousWebSockets.Server\obj\Any CPU\Release\netcoreapp2.0\PrototypingPrecariousWebSockets.Server.pdb

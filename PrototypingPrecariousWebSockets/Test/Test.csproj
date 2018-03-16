@@ -6,7 +6,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Protocols.Abstractions" Version="2.1.0-preview1-final" />
     <PackageReference Include="Microsoft.AspNetCore.SignalR.Client" Version="1.0.0-preview1-final" />
+    <PackageReference Include="Microsoft.AspNetCore.Sockets" Version="1.0.0-preview1-final" />
+    <PackageReference Include="Microsoft.AspNetCore.Sockets.Abstractions" Version="1.0.0-preview1-final" />
+    <PackageReference Include="Microsoft.AspNetCore.Sockets.Common.Http" Version="1.0.0-preview1-final" />
+    <PackageReference Include="Microsoft.AspNetCore.Sockets.Http" Version="1.0.0-preview1-final" />
   </ItemGroup>
 
 </Project>
