@@ -10,10 +10,12 @@ namespace PrototypingPrecariousWebSockets.Server.Hubs
         {
         }
 
-        public void Accept(string message)
+        public async Task<bool> Accept(string message)
         {
             Console.WriteLine($"Accept({message}) from {Context.ConnectionId}");
             Messages.All.Add(message);
+            await Task.Delay(2000);
+            return true;
         }
 
         public override Task OnConnectedAsync()
