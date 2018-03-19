@@ -21,7 +21,6 @@ namespace PrototypingPrecariousWebSockets
 
             app.UseSignalR(routes =>
             {
-                routes.MapHub<ServHub>("/serv");
                 routes.MapHub<UserHub>("/user");
             });
 

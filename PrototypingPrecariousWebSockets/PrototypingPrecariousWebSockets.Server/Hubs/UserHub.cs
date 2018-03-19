@@ -8,7 +8,6 @@ namespace PrototypingPrecariousWebSockets.Server.Hubs
     {
         public UserHub(IHubContext<UserHub> userHub)
         {
-            //userHub.
         }
 
         public void Accept(string message)
@@ -19,15 +18,13 @@ namespace PrototypingPrecariousWebSockets.Server.Hubs
 
         public override Task OnConnectedAsync()
         {
-            Console.WriteLine("OnConnectedAsync() - " + Context.ConnectionId);
-
+            Console.WriteLine($"OnConnectedAsync() - {Context.ConnectionId}");
             return base.OnConnectedAsync();
         }
 
         public override Task OnDisconnectedAsync(Exception exception)
         {
-            Console.WriteLine("OnDisconnectedAsync() - " + Context.ConnectionId);
-
+            Console.WriteLine($"OnDisconnectedAsync() - {Context.ConnectionId}");
             return base.OnDisconnectedAsync(exception);
         }
     }

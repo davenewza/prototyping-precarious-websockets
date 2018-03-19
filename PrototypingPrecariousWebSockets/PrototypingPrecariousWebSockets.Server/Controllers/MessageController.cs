@@ -8,9 +8,9 @@ namespace PrototypingPrecariousWebSockets.Server.Controllers
     [Route("api")]
     public class MessageController : Controller
     {
-        private IHubContext<ServHub> _hubContext;
+        private IHubContext<UserHub> _hubContext;
 
-        public MessageController(IHubContext<ServHub> hubContext)
+        public MessageController(IHubContext<UserHub> hubContext)
         {
             _hubContext = hubContext;
         }
@@ -20,12 +20,6 @@ namespace PrototypingPrecariousWebSockets.Server.Controllers
         {
             return String.Join(" | ", Messages.All);
         }
-
-        //[HttpGet("connections")]
-        //public string Get()
-        //{
-        //    return _hubContext.
-        //}
 
         [HttpGet("send")]
         public string Send()
