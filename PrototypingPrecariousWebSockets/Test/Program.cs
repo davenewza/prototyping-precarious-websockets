@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.SignalR.Client;
 using Microsoft.AspNetCore.Sockets;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Serialization;
 using System;
 using System.Linq;
 using System.Net.Http;
@@ -15,6 +17,8 @@ namespace Test
     {
         private static void Main(string[] args)
         {
+            Task.Delay(3000);
+
             string url = "http://precariouswebsockets.azurewebsites.net/user"; //http://localhost:5000/user
 
             var handler = new HttpClientHandler
@@ -24,16 +28,16 @@ namespace Test
                 SslProtocols = SslProtocols.Tls12 | SslProtocols.Tls11 | SslProtocols.Tls
             };
 
-            var signalRConnection = new HubConnectionBuilder()
-                .WithUrl(url)
-                .WithTransport(TransportType.WebSockets)
-                .WithMessageHandler(handler)
-                .WithConsoleLogger()
-                .Build();
+            //var signalRConnection = new HubConnectionBuilder()
+            //    .WithUrl(url)
+            //    .WithTransport(TransportType.WebSockets)
+            //    .WithMessageHandler(handler)
+            //    .WithConsoleLogger()
+            //    .Build();
 
-            signalRConnection.On<string>("Accept", id => { });
-            signalRConnection.StartAsync().Wait();
-            signalRConnection.InvokeAsync("Accept", "SignalR Client: Test Message!");
+            //signalRConnection.On<string>("Accept", id => { });
+            //signalRConnection.StartAsync().Wait();
+            //signalRConnection.InvokeAsync("Accept", "SignalR Client: Test Message!");
 
             // Refer to Hub Protocol specification when using websockets: https://github.com/aspnet/SignalR/blob/dev/specs/HubProtocol.md
             var websocket = new ClientWebSocket();
@@ -42,15 +46,21 @@ namespace Test
             var negotiation = AsMessage(@"{""protocol"":""json""}");
             websocket.SendAsync(negotiation, WebSocketMessageType.Text, true, CancellationToken.None).Wait();
 
-            var message = @"{
-                ""type"": 1,
-                ""target"": ""Accept"",
-                ""arguments"": [
-                    ""soookots""
-                ]
-            }";
+            string text;
+            do
+            {
+                text = Console.ReadLine();
 
-            websocket.SendAsync(AsMessage(message), WebSocketMessageType.Text, true, CancellationToken.None).Wait();
+                // var message = "{ \"type\": 1, \"target\": \"Accept\", \"arguments\": [ \" {text} \" ]}";// + Convert.ToChar((byte)0x1e);
+
+                var messageObj = new { Type = 1, Target = "Accept", Arguments = new[] { text } };
+                var message = JsonConvert.SerializeObject(messageObj, Formatting.None, new JsonSerializerSettings() { ContractResolver = new CamelCasePropertyNamesContractResolver() });
+                websocket.SendAsync(AsMessage(message), WebSocketMessageType.Text, true, CancellationToken.None).Wait();
+            }
+
+            while (!String.IsNullOrWhiteSpace(text));
+
+            websocket.CloseAsync(WebSocketCloseStatus.NormalClosure, "Ending session", CancellationToken.None).Wait();
 
             Console.ReadLine();
         }

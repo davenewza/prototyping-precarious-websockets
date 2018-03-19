@@ -13,7 +13,7 @@ namespace PrototypingPrecariousWebSockets.Server.Hubs
 
         public void Accept(string message)
         {
-            Console.WriteLine("Accept() from Context.ConnectionId");
+            Console.WriteLine($"Accept({message}) from {Context.ConnectionId}");
             Messages.All.Add(message);
         }
 
