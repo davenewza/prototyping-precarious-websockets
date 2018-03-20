@@ -42,7 +42,7 @@ namespace Test
                 {
                     text = Console.ReadLine();
 
-                    var messageObj = new { InvocationId = Guid.NewGuid(), Type = 1, Target = "Accept", Arguments = new[] { text } };
+                    var messageObj = new { Type = 1, Target = "Accept", Arguments = new[] { text } }; // InvocationId = Guid.NewGuid() for a blocking request.
                     var message = JsonConvert.SerializeObject(messageObj, Formatting.None, new JsonSerializerSettings() { ContractResolver = new CamelCasePropertyNamesContractResolver() });
 
                     await websocket.SendAsync(AsSignalRMessage(message), WebSocketMessageType.Text, true, CancellationToken.None);

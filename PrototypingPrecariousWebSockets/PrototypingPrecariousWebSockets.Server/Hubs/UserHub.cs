@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.SignalR;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Threading.Tasks;
 
@@ -6,27 +7,28 @@ namespace PrototypingPrecariousWebSockets.Server.Hubs
 {
     public class UserHub : Hub
     {
-        public UserHub(IHubContext<UserHub> userHub)
+        private ILogger<UserHub> _logger;
+
+        public UserHub(IHubContext<UserHub> userHub, ILogger<UserHub> logger)
         {
+            _logger = logger;
         }
 
-        public async Task<bool> Accept(string message)
+        public async Task Accept(string message)
         {
-            Console.WriteLine($"Accept({message}) from {Context.ConnectionId}");
+            _logger.LogInformation($"Accept({message}) from {Context.ConnectionId}");
             Messages.All.Add(message);
-            await Task.Delay(2000);
-            return true;
         }
 
         public override Task OnConnectedAsync()
         {
-            Console.WriteLine($"OnConnectedAsync() - {Context.ConnectionId}");
+            _logger.LogInformation($"OnConnectedAsync() - {Context.ConnectionId}");
             return base.OnConnectedAsync();
         }
 
         public override Task OnDisconnectedAsync(Exception exception)
         {
-            Console.WriteLine($"OnDisconnectedAsync() - {Context.ConnectionId}");
+            _logger.LogInformation($"OnDisconnectedAsync() - {Context.ConnectionId}");
             return base.OnDisconnectedAsync(exception);
         }
     }
