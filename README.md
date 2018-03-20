@@ -44,9 +44,11 @@ The user hub has a non-blocking method called `Accept` which accepts a single st
 
 ```json
 {
-	"invocationId": "123,
+    "invocationId": "123",
     "type": 1,
     "target": "Accept",
     "arguments": [ "32.45345,11.6762" ]
 }
 ```
+
+The field `invocationId` is used for blocking messages. This can be removed for non-blocking.
