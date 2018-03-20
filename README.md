@@ -24,18 +24,17 @@ This request will return with a response. If an error occurs, an error message w
 }
 ```
 
-## Sending messages
+## Sending messages to SignalR
 
 Non-blocking messages are to be sent with the following schema:
 
 ```json
 {
-	"type": 1,
-	"target: "MethodName",
-	"arguments": [ "value 1", "value 2" ]
+    "type": 1,
+    "target": "MethodName",
+    "arguments": [ "value 1", "value 2" ]
 }
 ```
-
 
 **NOTE:** All JSON messages needs to be separated with `0x1e`.
 
@@ -45,8 +44,8 @@ The user hub has a non-blocking method called `Accept` which accepts a single st
 
 ```json
 {
-	"type": 1,
-	"target: "Accept",
-	"arguments": [ "32.45345,11.6762" ]
+    "type": 1,
+    "target": "Accept",
+    "arguments": [ "32.45345,11.6762" ]
 }
 ```

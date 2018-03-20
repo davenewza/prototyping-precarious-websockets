@@ -20,7 +20,12 @@ namespace Test
         {
             // Refer to Hub Protocol specification when using websockets: https://github.com/aspnet/SignalR/blob/dev/specs/HubProtocol.md
             var websocket = new ClientWebSocket();
-            await websocket.ConnectAsync(new Uri("ws://localhost:5000/user"), CancellationToken.None);
+
+            // await websocket.ConnectAsync(new Uri("ws://localhost:5000/user"), CancellationToken.None);
+
+            await websocket.ConnectAsync(new Uri("ws://precariouswebsockets.azurewebsites.net/user"), CancellationToken.None);
+
+            //http://precariouswebsockets.azurewebsites.net
 
             // First, send negotiation message.
             var negotiation = AsSignalRMessage(@"{""protocol"":""json""}");

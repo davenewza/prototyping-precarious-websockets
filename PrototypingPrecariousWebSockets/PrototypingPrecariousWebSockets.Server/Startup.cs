@@ -20,7 +20,7 @@ namespace PrototypingPrecariousWebSockets
             IHostingEnvironment env,
             ILoggerFactory loggerFactory)
         {
-            loggerFactory.AddAzureWebAppDiagnostics();
+            loggerFactory.AddAzureWebAppDiagnostics().AddDebug();
 
             app.UseCors("CorsPolicy");
 
