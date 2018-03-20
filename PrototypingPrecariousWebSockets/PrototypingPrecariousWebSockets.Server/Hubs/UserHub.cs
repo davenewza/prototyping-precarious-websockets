@@ -14,10 +14,11 @@ namespace PrototypingPrecariousWebSockets.Server.Hubs
             _logger = logger;
         }
 
-        public async Task Accept(string message)
+        public bool Accept(string message)
         {
             _logger.LogInformation($"Accept({message}) from {Context.ConnectionId}");
             Messages.All.Add(message);
+            return true;
         }
 
         public override Task OnConnectedAsync()

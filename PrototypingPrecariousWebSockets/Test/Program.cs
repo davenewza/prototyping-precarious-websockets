@@ -21,9 +21,9 @@ namespace Test
             // Refer to Hub Protocol specification when using websockets: https://github.com/aspnet/SignalR/blob/dev/specs/HubProtocol.md
             var websocket = new ClientWebSocket();
 
-            // await websocket.ConnectAsync(new Uri("ws://localhost:5000/user"), CancellationToken.None);
+            await websocket.ConnectAsync(new Uri("ws://localhost:5000/user"), CancellationToken.None);
 
-            await websocket.ConnectAsync(new Uri("ws://precariouswebsockets.azurewebsites.net/user"), CancellationToken.None);
+            // await websocket.ConnectAsync(new Uri("ws://precariouswebsockets.azurewebsites.net/user"), CancellationToken.None);
 
             //http://precariouswebsockets.azurewebsites.net
 
@@ -43,7 +43,7 @@ namespace Test
                 {
                     text = Console.ReadLine();
 
-                    var messageObj = new { Type = 1, Target = "Accept", Arguments = new[] { text } }; // InvocationId = Guid.NewGuid() for a blocking request.
+                    var messageObj = new { InvocationId = Guid.NewGuid(), Type = 1, Target = "Accept", Arguments = new[] { text } }; // InvocationId = Guid.NewGuid() for a blocking request.
                     var message = JsonConvert.SerializeObject(messageObj, Formatting.None, new JsonSerializerSettings() { ContractResolver = new CamelCasePropertyNamesContractResolver() });
 
                     await websocket.SendAsync(AsSignalRMessage(message), WebSocketMessageType.Text, true, CancellationToken.None);
