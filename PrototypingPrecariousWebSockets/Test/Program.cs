@@ -14,57 +14,70 @@ namespace Test
         private static void Main(string[] args)
         {
             RunWebSockets().GetAwaiter().GetResult();
+
+            Console.ReadLine();
         }
 
         private static async Task RunWebSockets()
         {
             // Refer to Hub Protocol specification when using websockets: https://github.com/aspnet/SignalR/blob/dev/specs/HubProtocol.md
-            var websocket = new ClientWebSocket();
+            var webSocket = new ClientWebSocket();
 
-            // await websocket.ConnectAsync(new Uri("ws://localhost:5000/user"), CancellationToken.None);
+            // await webSocket.ConnectAsync(new Uri("ws://localhost:5000/user"), CancellationToken.None);
 
-            await websocket.ConnectAsync(new Uri("ws://precariouswebsockets.azurewebsites.net/user"), CancellationToken.None);
+            await webSocket.ConnectAsync(new Uri("ws://precariouswebsockets.azurewebsites.net/user"), CancellationToken.None);
 
             //http://precariouswebsockets.azurewebsites.net
 
             // First, send negotiation message.
             var negotiation = AsSignalRMessage(@"{""protocol"":""json""}");
-            await websocket.SendAsync(negotiation, WebSocketMessageType.Text, true, CancellationToken.None);
+            await webSocket.SendAsync(negotiation, WebSocketMessageType.Text, true, CancellationToken.None);
 
-            if (websocket.State == WebSocketState.CloseReceived)
+            if (webSocket.State == WebSocketState.CloseReceived)
             {
                 throw new InvalidOperationException("Negotiation failed.");
             }
 
-            var sending = Task.Run(async () =>
-            {
-                string text;
-                do
-                {
-                    text = Console.ReadLine();
-
-                    var messageObj = new { InvocationId = Guid.NewGuid(), Type = 1, Target = "Accept", Arguments = new[] { text } }; // InvocationId = Guid.NewGuid() for a blocking request.
-                    var message = JsonConvert.SerializeObject(messageObj, Formatting.None, new JsonSerializerSettings() { ContractResolver = new CamelCasePropertyNamesContractResolver() });
-
-                    await websocket.SendAsync(AsSignalRMessage(message), WebSocketMessageType.Text, true, CancellationToken.None);
-                }
-                while (!String.IsNullOrWhiteSpace(text));
-
-                await websocket.CloseOutputAsync(WebSocketCloseStatus.NormalClosure, String.Empty, CancellationToken.None);
-            });
-
-            var receiving = Receiving(websocket);
+            var sending = Sending(webSocket);
+            var receiving = Receiving(webSocket);
 
             await Task.WhenAll(sending, receiving);
         }
 
-        private static async Task Receiving(ClientWebSocket ws)
+        private static Task Sending(ClientWebSocket webSocket)
+        {
+            return Task.Run(async () =>
+             {
+                 string text;
+                 do
+                 {
+                     text = Console.ReadLine();
+
+                     var messageObj = new
+                     {
+                         InvocationId = Guid.NewGuid(), // For a blocking request.
+                         Type = 1,
+                         Target = "Accept",
+                         Arguments = new[] { text }
+                     };
+
+                     var message = JsonConvert.SerializeObject(messageObj, Formatting.None, new JsonSerializerSettings() { ContractResolver = new CamelCasePropertyNamesContractResolver() });
+
+                     await webSocket.SendAsync(AsSignalRMessage(message), WebSocketMessageType.Text, true, CancellationToken.None);
+                 }
+                 while (!String.IsNullOrWhiteSpace(text));
+
+                 await webSocket.CloseOutputAsync(WebSocketCloseStatus.NormalClosure, String.Empty, CancellationToken.None);
+             });
+        }
+
+        private static async Task Receiving(ClientWebSocket webSocket)
         {
             var buffer = new byte[2048];
 
             while (true)
             {
-                var result = await ws.ReceiveAsync(new ArraySegment<byte>(buffer), CancellationToken.None);
+                var result = await webSocket.ReceiveAsync(new ArraySegment<byte>(buffer), CancellationToken.None);
 
                 if (result.MessageType == WebSocketMessageType.Text)
                 {
@@ -76,7 +89,9 @@ namespace Test
                 }
                 else if (result.MessageType == WebSocketMessageType.Close)
                 {
-                    await ws.CloseOutputAsync(WebSocketCloseStatus.NormalClosure, String.Empty, CancellationToken.None);
+                    Console.WriteLine($"CloseStatus = {result.CloseStatus}");
+
+                    await webSocket.CloseOutputAsync(WebSocketCloseStatus.NormalClosure, String.Empty, CancellationToken.None);
                     break;
                 }
             }
