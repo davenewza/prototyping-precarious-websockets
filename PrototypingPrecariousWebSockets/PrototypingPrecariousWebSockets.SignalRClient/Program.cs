@@ -24,17 +24,17 @@ namespace PrototypingPrecariousWebSockets.SignalRClient
 
         private static async Task RunSignalRClient()
         {
-            var handler = new HttpClientHandler
-            {
-                ClientCertificateOptions = ClientCertificateOption.Manual,
-                ServerCertificateCustomValidationCallback = (httpRequestMessage, cert, cetChain, policyErrors) => true,
-                SslProtocols = SslProtocols.Tls12 | SslProtocols.Tls11 | SslProtocols.Tls
-            };
+            //var handler = new HttpClientHandler
+            //{
+            //    ClientCertificateOptions = ClientCertificateOption.Manual,
+            //    ServerCertificateCustomValidationCallback = (httpRequestMessage, cert, cetChain, policyErrors) => true,
+            //    SslProtocols = SslProtocols.Tls12 | SslProtocols.Tls11 | SslProtocols.Tls
+            //};
 
             var hubConnection = new HubConnectionBuilder()
                 .WithUrl(uri)
                 .WithTransport(TransportType.WebSockets)
-                .WithMessageHandler(handler)
+                // .WithMessageHandler(handler)
                 .Build();
 
             await hubConnection.StartAsync();

@@ -50,3 +50,26 @@ The user hub has a non-blocking method named `Accept` with a single string param
 ```
 
 The field `invocationId` is used for blocking messages. This can be removed for non-blocking.
+
+# Broadcasting a message from the server
+
+You can broadcast a message to all clients using the following HTTP GET request:
+
+`http://precariouswebsockets.azurewebsites.net/api/send?value=hello`
+
+The above request will execute the `Accept("hello")` method on each client.
+
+# Monitor server activity
+
+The following HTTP GET request provides a log of connection and message activity on the server:
+
+`http://precariouswebsockets.azurewebsites.net/api/`
+
+Example:
+
+```
+3/21/2018 10:39:31 AM	9e56f704-ca6b-4883-a3de-76c2e01b4ef0	Connected
+3/21/2018 10:39:53 AM	9e56f704-ca6b-4883-a3de-76c2e01b4ef0	Accept(hello)
+3/21/2018 10:40:12 AM	9e56f704-ca6b-4883-a3de-76c2e01b4ef0	Accept(another message sent from this device)
+3/21/2018 10:40:27 AM	9e56f704-ca6b-4883-a3de-76c2e01b4ef0	Disconnected
+```

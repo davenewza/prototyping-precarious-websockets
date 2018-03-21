@@ -13,7 +13,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PrototypingPrecariousWebSockets.Monitor", "PrototypingPrecariousWebSockets.Monitor\PrototypingPrecariousWebSockets.Monitor.csproj", "{E43CB64A-A29A-42C1-B9F7-B9FAD92A71C0}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PrototypingPrecariousWebSockets.Client", "PrototypingPrecariousWebSockets.Client\PrototypingPrecariousWebSockets.Client.csproj", "{044725E2-3B28-4675-A10B-D2F9D265F011}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PrototypingPrecariousWebSockets.WebSocketsClient", "PrototypingPrecariousWebSockets.Client\PrototypingPrecariousWebSockets.WebSocketsClient.csproj", "{044725E2-3B28-4675-A10B-D2F9D265F011}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PrototypingPrecariousWebSockets.SignalRClient", "PrototypingPrecariousWebSockets.SignalRClient\PrototypingPrecariousWebSockets.SignalRClient.csproj", "{48BBC4DD-A51F-4234-8CC9-40CB64E7E8F2}"
 EndProject
