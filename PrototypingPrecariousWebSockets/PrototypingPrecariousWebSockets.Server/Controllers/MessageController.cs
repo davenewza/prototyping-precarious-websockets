@@ -22,10 +22,9 @@ namespace PrototypingPrecariousWebSockets.Server.Controllers
         }
 
         [HttpGet("send")]
-        public string Send()
+        public void Send([FromQuery] string value)
         {
-            _hubContext.Clients.All.SendAsync("Send", "FROM HTTP");
-            return "sent";
+            _hubContext.Clients.All.SendAsync("Update", value);
         }
     }
 }

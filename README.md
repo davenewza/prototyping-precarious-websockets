@@ -1,6 +1,4 @@
-Prototyping websockets in networks with unreliability connectivity and low bandwith.
-
-# Connecting to a SignalR server with WebSockets
+# Connecting to a SignalR hub with WebSockets
 
 Using WebSockets to connect to a SignalR hub requires that you change the URI scheme from `https` to `ws`, for example:
 
@@ -24,7 +22,7 @@ This request will return with a response. If an error occurs, an error message w
 }
 ```
 
-## Sending messages to SignalR
+## Invocation messages to SignalR
 
 Non-blocking messages are to be sent with the following schema:
 
@@ -38,16 +36,16 @@ Non-blocking messages are to be sent with the following schema:
 
 **NOTE:** All JSON messages needs to be separated with `0x1e`.
 
-## Sending messages to the UserHub
+## Sending messages to the User Hub
 
-The user hub has a non-blocking method called `Accept` which accepts a single string parameter.
+The user hub has a non-blocking method named `Accept` with a single string parameter. Invoking this target would look something like this:
 
 ```json
 {
     "invocationId": "123",
     "type": 1,
     "target": "Accept",
-    "arguments": [ "32.45345,11.6762" ]
+    "arguments": [ "some value" ]
 }
 ```
 

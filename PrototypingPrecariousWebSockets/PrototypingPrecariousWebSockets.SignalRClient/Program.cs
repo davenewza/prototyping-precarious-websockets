@@ -1,4 +1,6 @@
 ﻿using Microsoft.AspNetCore.SignalR.Client;
+using Microsoft.AspNetCore.Sockets;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Net.Http;
 using System.Security.Authentication;
@@ -32,14 +34,13 @@ namespace PrototypingPrecariousWebSockets.SignalRClient
 
             var hubConnection = new HubConnectionBuilder()
                 .WithUrl(uri)
-                //.WithTransport(TransportType.WebSockets)
+                .WithTransport(TransportType.WebSockets)
                 .WithMessageHandler(handler)
-                .WithConsoleLogger()
                 .Build();
 
             await hubConnection.StartAsync();
 
-            hubConnection.On<string>("Message", Console.WriteLine);
+            hubConnection.On<string>("Update", value => { Console.WriteLine($"Accept({value})"); });
 
             var sending = Sending(hubConnection);
 
