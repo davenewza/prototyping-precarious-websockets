@@ -7,12 +7,12 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Test
+namespace PrototypingPrecariousWebSockets.WebSocketsClient
 {
     internal class Program
     {
-        //private const string uri = "ws://precariouswebsockets.azurewebsites.net/user";
-        private const string uri = "ws://localhost:5000/user";
+        private const string uri = "ws://precariouswebsockets.azurewebsites.net/user";
+        //private const string uri = "ws://localhost:5000/user";
 
         private static void Main(string[] args)
         {

@@ -10,8 +10,8 @@ namespace PrototypingPrecariousWebSockets.SignalRClient
 {
     internal class Program
     {
-        //private const string uri = "http://precariouswebsockets.azurewebsites.net/user";
-        private const string uri = "http://localhost:5000/user";
+        private const string uri = "http://precariouswebsockets.azurewebsites.net/user";
+        //private const string uri = "http://localhost:5000/user";
 
         private static void Main(string[] args)
         {
