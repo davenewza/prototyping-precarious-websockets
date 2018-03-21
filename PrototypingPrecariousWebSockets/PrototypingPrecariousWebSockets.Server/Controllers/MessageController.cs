@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.SignalR;
 using PrototypingPrecariousWebSockets.Server.Hubs;
 using System;
+using System.Linq;
 
 namespace PrototypingPrecariousWebSockets.Server.Controllers
 {
@@ -18,7 +19,7 @@ namespace PrototypingPrecariousWebSockets.Server.Controllers
         [HttpGet()]
         public string Get()
         {
-            return String.Join(" | ", Messages.All);
+            return String.Join("\r\n", Messages.All.Select(x => $"{x.Item1}\t{x.Item2}\t{x.Item3}"));
         }
 
         [HttpGet("send")]

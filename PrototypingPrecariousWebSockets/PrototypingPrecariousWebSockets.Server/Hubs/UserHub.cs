@@ -9,9 +9,7 @@ namespace PrototypingPrecariousWebSockets.Server.Hubs
     {
         private ILogger<UserHub> _logger;
 
-        private IHubContext<MonitorHub> _monitorHub;
-
-        public UserHub(IHubContext<UserHub> userHub, IHubContext<MonitorHub> monitorHub, ILogger<UserHub> logger)
+        public UserHub(ILogger<UserHub> logger)
         {
             _logger = logger;
         }
@@ -20,21 +18,23 @@ namespace PrototypingPrecariousWebSockets.Server.Hubs
         {
             _logger.LogInformation($"Accept({message}) from {Context.ConnectionId}");
 
-            //  Monitor($"Accept({message}) from {Context.ConnectionId}");
-
-            Messages.All.Add(message);
+            Messages.All.Add(new Tuple<DateTime, string, string>(DateTime.Now, Context.ConnectionId, $"Accept({message})"));
             return true;
         }
 
         public override Task OnConnectedAsync()
         {
             _logger.LogInformation($"OnConnectedAsync() - {Context.ConnectionId}");
+
+            Messages.All.Add(new Tuple<DateTime, string, string>(DateTime.Now, Context.ConnectionId, $"Connected"));
             return base.OnConnectedAsync();
         }
 
         public override Task OnDisconnectedAsync(Exception exception)
         {
             _logger.LogInformation($"OnDisconnectedAsync() - {Context.ConnectionId}");
+
+            Messages.All.Add(new Tuple<DateTime, string, string>(DateTime.Now, Context.ConnectionId, $"Disconnected"));
             return base.OnDisconnectedAsync(exception);
         }
     }

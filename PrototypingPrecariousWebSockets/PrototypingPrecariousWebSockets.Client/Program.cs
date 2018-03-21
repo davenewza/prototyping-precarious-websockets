@@ -16,6 +16,8 @@ namespace Test
 
         private static void Main(string[] args)
         {
+            Console.WriteLine("WebSocket Client\n================\n");
+
             RunWebSocketsClient().GetAwaiter().GetResult();
 
             Console.ReadLine();
@@ -51,7 +53,7 @@ namespace Test
                  {
                      text = Console.ReadLine();
 
-                     var messageObj = new
+                     var messageObj = new InvocationMessage()
                      {
                          // InvocationId for a blocking request.
                          InvocationId = Guid.NewGuid().ToString(),
@@ -81,7 +83,20 @@ namespace Test
 
                 if (result.MessageType == WebSocketMessageType.Text)
                 {
-                    Console.WriteLine(Encoding.UTF8.GetString(buffer, 0, result.Count));
+                    var parsed = Encoding.UTF8.GetString(buffer, 0, result.Count - 1);
+
+                    try
+                    {
+                        var message = JsonConvert.DeserializeObject<InvocationMessage>(parsed);
+
+                        if (message.Target == "Update")
+                        {
+                            Accept(message.Arguments[0] as string);
+                        }
+                    }
+                    catch (Exception) { }
+
+                    Console.WriteLine(parsed);
                 }
                 else if (result.MessageType == WebSocketMessageType.Binary)
                 {
@@ -109,6 +124,22 @@ namespace Test
 
             // Append 0x1e to denote end of message for SignalR server.
             return bytes.Append((byte)0x1e).ToArray();
+        }
+
+        private static void Accept(string value)
+        {
+            Console.WriteLine($"Accept({value})");
+        }
+
+        public class InvocationMessage
+        {
+            public string InvocationId { get; set; }
+
+            public int Type { get; set; }
+
+            public string Target { get; set; }
+
+            public object[] Arguments { get; set; }
         }
     }
 }

@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.SignalR.Client;
 using Microsoft.AspNetCore.Sockets;
-using Microsoft.Extensions.Logging;
 using System;
 using System.Net.Http;
 using System.Security.Authentication;
@@ -16,7 +15,7 @@ namespace PrototypingPrecariousWebSockets.SignalRClient
 
         private static void Main(string[] args)
         {
-            Console.WriteLine("SignalR Client");
+            Console.WriteLine("SignalR Client\n==============\n");
 
             RunSignalRClient().GetAwaiter().GetResult();
 
@@ -40,7 +39,7 @@ namespace PrototypingPrecariousWebSockets.SignalRClient
 
             await hubConnection.StartAsync();
 
-            hubConnection.On<string>("Update", value => { Console.WriteLine($"Accept({value})"); });
+            hubConnection.On<string>("Update", Accept);
 
             var sending = Sending(hubConnection);
 
@@ -64,6 +63,11 @@ namespace PrototypingPrecariousWebSockets.SignalRClient
 
                 await hubConnection.StopAsync();
             });
+        }
+
+        private static void Accept(string value)
+        {
+            Console.WriteLine($"Accept({value})");
         }
     }
 }
