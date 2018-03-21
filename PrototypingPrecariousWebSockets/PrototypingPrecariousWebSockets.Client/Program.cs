@@ -11,32 +11,30 @@ namespace Test
 {
     internal class Program
     {
+        //private const string uri = "ws://precariouswebsockets.azurewebsites.net/user";
+        private const string uri = "ws://localhost:5000/user";
+
         private static void Main(string[] args)
         {
-            RunWebSockets().GetAwaiter().GetResult();
+            RunWebSocketsClient().GetAwaiter().GetResult();
 
             Console.ReadLine();
         }
 
-        private static async Task RunWebSockets()
+        private static async Task RunWebSocketsClient()
         {
             // Refer to Hub Protocol specification when using websockets: https://github.com/aspnet/SignalR/blob/dev/specs/HubProtocol.md
             var webSocket = new ClientWebSocket();
 
-            // await webSocket.ConnectAsync(new Uri("ws://localhost:5000/user"), CancellationToken.None);
+            await webSocket.ConnectAsync(new Uri(uri), CancellationToken.None);
 
-            await webSocket.ConnectAsync(new Uri("ws://precariouswebsockets.azurewebsites.net/user"), CancellationToken.None);
-
-            //http://precariouswebsockets.azurewebsites.net
+            var negotiationObj = new
+            {
+                Protocol = "json"
+            };
 
             // First, send negotiation message.
-            var negotiation = AsSignalRMessage(@"{""protocol"":""json""}");
-            await webSocket.SendAsync(negotiation, WebSocketMessageType.Text, true, CancellationToken.None);
-
-            if (webSocket.State == WebSocketState.CloseReceived)
-            {
-                throw new InvalidOperationException("Negotiation failed.");
-            }
+            await webSocket.SendAsync(AsSignalRMessage(negotiationObj), WebSocketMessageType.Text, true, CancellationToken.None);
 
             var sending = Sending(webSocket);
             var receiving = Receiving(webSocket);
@@ -55,15 +53,17 @@ namespace Test
 
                      var messageObj = new
                      {
-                         InvocationId = Guid.NewGuid(), // For a blocking request.
+                         // InvocationId for a blocking request.
+                         InvocationId = Guid.NewGuid().ToString(),
+                         // Message type - 1 for invocation message.
                          Type = 1,
+                         // The target name, as expected by the callee's binder.
                          Target = "Accept",
+                         // Array of arguments to apply to the method referred to in target.
                          Arguments = new[] { text }
                      };
 
-                     var message = JsonConvert.SerializeObject(messageObj, Formatting.None, new JsonSerializerSettings() { ContractResolver = new CamelCasePropertyNamesContractResolver() });
-
-                     await webSocket.SendAsync(AsSignalRMessage(message), WebSocketMessageType.Text, true, CancellationToken.None);
+                     await webSocket.SendAsync(AsSignalRMessage(messageObj), WebSocketMessageType.Text, true, CancellationToken.None);
                  }
                  while (!String.IsNullOrWhiteSpace(text));
 
@@ -85,7 +85,7 @@ namespace Test
                 }
                 else if (result.MessageType == WebSocketMessageType.Binary)
                 {
-                    throw new InvalidOperationException("Do not accept binary");
+                    throw new NotImplementedException();
                 }
                 else if (result.MessageType == WebSocketMessageType.Close)
                 {
@@ -97,8 +97,13 @@ namespace Test
             }
         }
 
-        private static ArraySegment<byte> AsSignalRMessage(string message)
+        private static ArraySegment<byte> AsSignalRMessage(object messageObj)
         {
+            var message = JsonConvert.SerializeObject(
+                messageObj,
+                Formatting.None,
+                new JsonSerializerSettings() { ContractResolver = new CamelCasePropertyNamesContractResolver() });
+
             var encoded = Encoding.UTF8.GetBytes(message);
             var bytes = new ArraySegment<byte>(encoded);
 

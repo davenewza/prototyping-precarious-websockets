@@ -5,12 +5,16 @@ VisualStudioVersion = 15.0.27130.2026
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PrototypingPrecariousWebSockets.Server", "PrototypingPrecariousWebSockets.Server\PrototypingPrecariousWebSockets.Server.csproj", "{CDAB56F2-1804-4723-A015-585226F1BB81}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Test", "Test\Test.csproj", "{C4445A62-1138-464F-8E32-33D8BE92CD78}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{15651CFD-A268-4DE0-BABC-F6A7F5667189}"
 	ProjectSection(SolutionItems) = preProject
 		.gitignore = .gitignore
 	EndProjectSection
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PrototypingPrecariousWebSockets.Monitor", "PrototypingPrecariousWebSockets.Monitor\PrototypingPrecariousWebSockets.Monitor.csproj", "{E43CB64A-A29A-42C1-B9F7-B9FAD92A71C0}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PrototypingPrecariousWebSockets.Client", "PrototypingPrecariousWebSockets.Client\PrototypingPrecariousWebSockets.Client.csproj", "{044725E2-3B28-4675-A10B-D2F9D265F011}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PrototypingPrecariousWebSockets.SignalRClient", "PrototypingPrecariousWebSockets.SignalRClient\PrototypingPrecariousWebSockets.SignalRClient.csproj", "{48BBC4DD-A51F-4234-8CC9-40CB64E7E8F2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -22,10 +26,18 @@ Global
 		{CDAB56F2-1804-4723-A015-585226F1BB81}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CDAB56F2-1804-4723-A015-585226F1BB81}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CDAB56F2-1804-4723-A015-585226F1BB81}.Release|Any CPU.Build.0 = Release|Any CPU
-		{C4445A62-1138-464F-8E32-33D8BE92CD78}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C4445A62-1138-464F-8E32-33D8BE92CD78}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C4445A62-1138-464F-8E32-33D8BE92CD78}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C4445A62-1138-464F-8E32-33D8BE92CD78}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E43CB64A-A29A-42C1-B9F7-B9FAD92A71C0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E43CB64A-A29A-42C1-B9F7-B9FAD92A71C0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E43CB64A-A29A-42C1-B9F7-B9FAD92A71C0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E43CB64A-A29A-42C1-B9F7-B9FAD92A71C0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{044725E2-3B28-4675-A10B-D2F9D265F011}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{044725E2-3B28-4675-A10B-D2F9D265F011}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{044725E2-3B28-4675-A10B-D2F9D265F011}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{044725E2-3B28-4675-A10B-D2F9D265F011}.Release|Any CPU.Build.0 = Release|Any CPU
+		{48BBC4DD-A51F-4234-8CC9-40CB64E7E8F2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{48BBC4DD-A51F-4234-8CC9-40CB64E7E8F2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{48BBC4DD-A51F-4234-8CC9-40CB64E7E8F2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{48BBC4DD-A51F-4234-8CC9-40CB64E7E8F2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
