@@ -98,7 +98,7 @@ namespace PrototypingPrecariousWebSockets.WebSocketsClient
 
                         if (message.Target == "Update")
                         {
-                            Accept(message.Arguments[0] as string);
+                            Update(message.Arguments[0] as string);
                         }
                     }
                     catch (Exception) { }
@@ -133,9 +133,9 @@ namespace PrototypingPrecariousWebSockets.WebSocketsClient
             return bytes.Append((byte)0x1e).ToArray();
         }
 
-        private static void Accept(string value)
+        private static void Update(string value)
         {
-            Console.WriteLine($"Accept({value})");
+            Console.WriteLine($"Update({value})");
         }
 
         public class InvocationMessage

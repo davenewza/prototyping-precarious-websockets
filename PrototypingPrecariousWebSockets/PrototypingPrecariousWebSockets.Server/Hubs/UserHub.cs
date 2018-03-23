@@ -20,7 +20,7 @@ namespace PrototypingPrecariousWebSockets.Server.Hubs
 
             Messages.All.Add(new Tuple<DateTime, string, string>(DateTime.Now, Context.ConnectionId, $"Accept({message})"));
 
-            this.Clients.Client(Context.ConnectionId).SendAsync("Update", "received msg - ty");
+            this.Clients.Client(Context.ConnectionId).SendAsync("Confirm", "Received msg.");
 
             return true;
         }

@@ -39,7 +39,8 @@ namespace PrototypingPrecariousWebSockets.SignalRClient
 
             await hubConnection.StartAsync();
 
-            hubConnection.On<string>("Update", Accept);
+            hubConnection.On<string>("Update", Update);
+            hubConnection.On("Confirm", Confirm);
             hubConnection.Closed += HubConnectionClosed;
 
             var sending = Sending(hubConnection);
@@ -71,9 +72,14 @@ namespace PrototypingPrecariousWebSockets.SignalRClient
             Console.WriteLine(exception);
         }
 
-        private static void Accept(string value)
+        private static void Update(string value)
         {
-            Console.WriteLine($"Accept({value})");
+            Console.WriteLine($"Update({value})");
+        }
+
+        private static void Confirm()
+        {
+            Console.WriteLine($"Confirm()");
         }
     }
 }
