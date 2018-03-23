@@ -10,8 +10,8 @@ namespace PrototypingPrecariousWebSockets.SignalRClient
 {
     internal class Program
     {
-        private const string uri = "http://precariouswebsockets.azurewebsites.net/user";
-        //private const string uri = "http://localhost:5000/user";
+        // private const string uri = "https://precariouswebsockets.azurewebsites.net/user";
+        private const string uri = "http://localhost:5000/user";
 
         private static void Main(string[] args)
         {
@@ -24,12 +24,12 @@ namespace PrototypingPrecariousWebSockets.SignalRClient
 
         private static async Task RunSignalRClient()
         {
-            //var handler = new HttpClientHandler
-            //{
-            //    ClientCertificateOptions = ClientCertificateOption.Manual,
-            //    ServerCertificateCustomValidationCallback = (httpRequestMessage, cert, cetChain, policyErrors) => true,
-            //    SslProtocols = SslProtocols.Tls12 | SslProtocols.Tls11 | SslProtocols.Tls
-            //};
+            var handler = new HttpClientHandler
+            {
+                ClientCertificateOptions = ClientCertificateOption.Manual,
+                ServerCertificateCustomValidationCallback = (httpRequestMessage, cert, cetChain, policyErrors) => true,
+                SslProtocols = SslProtocols.Tls12 | SslProtocols.Tls11 | SslProtocols.Tls
+            };
 
             var hubConnection = new HubConnectionBuilder()
                 .WithUrl(uri)
@@ -40,6 +40,7 @@ namespace PrototypingPrecariousWebSockets.SignalRClient
             await hubConnection.StartAsync();
 
             hubConnection.On<string>("Update", Accept);
+            hubConnection.Closed += HubConnectionClosed;
 
             var sending = Sending(hubConnection);
 
@@ -63,6 +64,11 @@ namespace PrototypingPrecariousWebSockets.SignalRClient
 
                 await hubConnection.StopAsync();
             });
+        }
+
+        private static void HubConnectionClosed(Exception exception)
+        {
+            Console.WriteLine(exception);
         }
 
         private static void Accept(string value)

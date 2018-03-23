@@ -11,8 +11,8 @@ namespace PrototypingPrecariousWebSockets.WebSocketsClient
 {
     internal class Program
     {
-        private const string uri = "ws://precariouswebsockets.azurewebsites.net/user";
-        //private const string uri = "ws://localhost:5000/user";
+        //private const string uri = "wss://precariouswebsockets.azurewebsites.net/user";
+        private const string uri = "ws://localhost:5000/user";
 
         private static void Main(string[] args)
         {
@@ -65,7 +65,14 @@ namespace PrototypingPrecariousWebSockets.WebSocketsClient
                          Arguments = new[] { text }
                      };
 
-                     await webSocket.SendAsync(AsSignalRMessage(messageObj), WebSocketMessageType.Text, true, CancellationToken.None);
+                     try
+                     {
+                         await webSocket.SendAsync(AsSignalRMessage(messageObj), WebSocketMessageType.Text, true, CancellationToken.None);
+                     }
+                     catch (Exception exception)
+                     {
+                         Console.WriteLine(exception);
+                     }
                  }
                  while (!String.IsNullOrWhiteSpace(text));
 
