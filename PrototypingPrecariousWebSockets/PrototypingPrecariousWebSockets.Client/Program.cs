@@ -100,6 +100,11 @@ namespace PrototypingPrecariousWebSockets.WebSocketsClient
                         {
                             Update(message.Arguments[0] as string);
                         }
+
+                        if (message.Target == "Confirm")
+                        {
+                            Confirm();
+                        }
                     }
                     catch (Exception) { }
 
@@ -136,6 +141,11 @@ namespace PrototypingPrecariousWebSockets.WebSocketsClient
         private static void Update(string value)
         {
             Console.WriteLine($"Update({value})");
+        }
+
+        private static void Confirm()
+        {
+            Console.WriteLine($"Confirm()");
         }
 
         public class InvocationMessage

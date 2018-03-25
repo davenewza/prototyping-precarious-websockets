@@ -10,7 +10,7 @@ namespace PrototypingPrecariousWebSockets.SignalRClient
 {
     internal class Program
     {
-        // private const string uri = "https://precariouswebsockets.azurewebsites.net/user";
+        //  private const string uri = "https://precariouswebsockets.azurewebsites.net/user";
         private const string uri = "http://localhost:5000/user";
 
         private static void Main(string[] args)
@@ -33,8 +33,9 @@ namespace PrototypingPrecariousWebSockets.SignalRClient
 
             var hubConnection = new HubConnectionBuilder()
                 .WithUrl(uri)
-                .WithTransport(TransportType.WebSockets)
-                // .WithMessageHandler(handler)
+                .WithTransport(TransportType.LongPolling)
+                .WithWebSocketOptions(options => options.KeepAliveInterval = TimeSpan.FromSeconds(10))
+                .WithMessageHandler(handler)
                 .Build();
 
             await hubConnection.StartAsync();
