@@ -1,5 +1,5 @@
-﻿using Microsoft.AspNetCore.Http.Features;
-using Microsoft.AspNetCore.SignalR;
+﻿using Microsoft.AspNetCore.SignalR;
+using Microsoft.AspNetCore.Sockets;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Threading.Tasks;
@@ -15,10 +15,16 @@ namespace PrototypingPrecariousWebSockets.Server.Hubs
             _logger = logger;
         }
 
+        public string Transport
+        {
+            get
+            {
+                return Context.Connection.Metadata[ConnectionMetadataNames.Transport] as string;
+            }
+        }
+
         public bool Accept(string message)
         {
-            var httpContext = Context.Connection.GetHttpContext();
-
             _logger.LogInformation($"Accept({message}) from {Context.ConnectionId}.");
 
             Messages.All.Add(new Tuple<DateTime, string, string>(DateTime.Now, Context.ConnectionId, $"Accept({message})"));
@@ -30,11 +36,11 @@ namespace PrototypingPrecariousWebSockets.Server.Hubs
 
         public override Task OnConnectedAsync()
         {
-            _logger.LogInformation($"OnConnectedAsync() - {Context.ConnectionId}");
-
             var httpContext = Context.Connection.GetHttpContext();
 
-            Messages.All.Add(new Tuple<DateTime, string, string>(DateTime.Now, Context.ConnectionId, $"Connected. WebSockets={httpContext.WebSockets.IsWebSocketRequest}"));
+            _logger.LogInformation($"OnConnectedAsync() - {Context.ConnectionId}. WebSockets={httpContext.WebSockets.IsWebSocketRequest}. Transport={Transport}");
+
+            Messages.All.Add(new Tuple<DateTime, string, string>(DateTime.Now, Context.ConnectionId, $"Connected. WebSockets={httpContext.WebSockets.IsWebSocketRequest}. Transport={Transport}"));
 
             foreach (var header in httpContext.Request.Headers)
             {

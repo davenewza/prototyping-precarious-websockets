@@ -11,7 +11,7 @@ namespace PrototypingPrecariousWebSockets.WebSocketsClient
 {
     internal class Program
     {
-        //private const string uri = "wss://precariouswebsockets.azurewebsites.net/user";
+        // private const string uri = "wss://precariouswebsockets.azurewebsites.net/user";
         private const string uri = "ws://localhost:5000/user";
 
         private static void Main(string[] args)

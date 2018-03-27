@@ -33,8 +33,8 @@ namespace PrototypingPrecariousWebSockets.SignalRClient
 
             var hubConnection = new HubConnectionBuilder()
                 .WithUrl(uri)
-                .WithTransport(TransportType.LongPolling)
-                .WithWebSocketOptions(options => options.KeepAliveInterval = TimeSpan.FromSeconds(10))
+                .WithTransport(TransportType.All)
+                // .WithWebSocketOptions(options => options.KeepAliveInterval = TimeSpan.FromSeconds(10))
                 .WithMessageHandler(handler)
                 .Build();
 
